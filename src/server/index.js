@@ -1,10 +1,12 @@
 const express = require('express');
 const db = require('../db/models');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.use(express.static('public'));
+app.use(bodyParser.json());
 
 app.get('/v1/reminders', (req, res) => {
   db.findRemindersEndingSoon()
