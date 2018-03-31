@@ -9,6 +9,4 @@ const Reminder = mongoose.model('Reminder', {
   expired: Boolean,
 });
 
-module.exports = {
-  Reminder,
-};
+module.exports = Reminder;
