@@ -15,7 +15,7 @@ const fakerGenerator = (count) => {
   const result = [];
   for (let i = 0; i < count; i += 1) {
     const time = moment.utc();
-    
+
     const reminder = {
       task: faker.lorem.sentence(),
       email: faker.internet.email(),
@@ -30,6 +30,10 @@ const fakerGenerator = (count) => {
 Reminder.insertMany(fakerGenerator(50))
   .then((success) => {
     console.log(success);
+    Reminder.db.close();
   })
-  .catch(error => console.log(error));
+  .catch((error) => {
+    console.log(error);
+    Reminder.db.close();
+  });
 
