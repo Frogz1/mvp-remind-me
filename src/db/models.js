@@ -11,13 +11,9 @@ const Reminder = mongoose.model('Reminder', {
 });
 
 const insertReminder = (reminder) => {
-  Reminder
+  return Reminder
     .collection
-    .insertOne(reminder)
-    .then((data) => {
-      console.log(data);
-    })
-    .catch(error => console.error(error));
+    .insertOne(reminder);
 };
 
 const findRemindersEndingSoon = () => {
