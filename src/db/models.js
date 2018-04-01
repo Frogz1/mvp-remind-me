@@ -45,10 +45,16 @@ const findRemindersEndingSoon = () => {
 const momentTester = () => {
   // To determine if need to send an e-mail alert
   // 1. Every 10 seconds go through reminderTimes and perform:
-    // moment(reminderTime).fromNow()
-    // if value returned is "in a few seconds", trigger alert
+  // moment(reminderTime).fromNow()
+  // if value returned is "in a few seconds", trigger alert
+  findRemindersEndingSoon()
+    .then((data) => {
+      const reminders = data.filter(value =>
+        moment(value.reminderTime).fromNow() === 'in a few seconds');
+      console.log(reminders);
+    })
+    .catch(error => error);
 };
 
-momentTester();
 
 module.exports = { Reminder, insertReminder, findRemindersEndingSoon };

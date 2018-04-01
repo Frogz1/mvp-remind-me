@@ -1,5 +1,7 @@
-require('dotenv').config()
+require('dotenv').config();
 const nodemailer = require('nodemailer');
+const moment = require('moment');
+const { findRemindersEndingSoon } = require('../db/models');
 
 
 // Generate test SMTP service account from ethereal.email
@@ -19,18 +21,33 @@ const transporter = nodemailer.createTransport({
 });
 
 // setup email data with unicode symbols
-const mailOptions = {
-  from: '"MVP 👻" <trevoroldReminderBot@gmail.com>', // sender address
-  to: 'trevorold1@gmail.com', // list of receivers
-  subject: 'Hello ✔', // Subject line
-  text: 'Hello world Email', // plain text body
-  html: '<b>Hello world?</b>', // html body
+const sendReminder = (reminder) => {
+  const reminderMail = {
+    from: '"MVP 👻" <trevoroldReminderBot@gmail.com>', // sender address
+    to: `${reminder.email}`, // list of receivers
+    subject: 'Hello ✔', // Subject line
+    text: `${reminder.task}`, // plain text body
+    html: `<b>A friendly reminder from mvp-remind-me: ${reminder.task} 🙌</b>`, // html body
+  };
+  transporter.sendMail(reminderMail, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message sent: %s', info.messageId);
+  });
 };
 
+const sendReminders = () => {
+  findRemindersEndingSoon()
+    .then((data) => {
+      const reminders = data.filter(value =>
+        moment(value.reminderTime).fromNow() === 'in a few seconds');
+      reminders.forEach((reminder) => {
+        sendReminder(reminder);
+      });
+    })
+    .catch(error => error);
+};
+
+sendReminders();
 // send mail with defined transport object
-transporter.sendMail(mailOptions, (error, info) => {
-  if (error) {
-    return console.log(error);
-  }
-  console.log('Message sent: %s', info.messageId);
-});

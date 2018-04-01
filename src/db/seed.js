@@ -1,4 +1,4 @@
-const Reminder = require('./models.js');
+const db = require('./models.js');
 const faker = require('faker');
 const moment = require('moment');
 
@@ -18,8 +18,8 @@ const fakerGenerator = (count) => {
 
     const reminder = {
       task: faker.lorem.sentence(),
-      email: faker.internet.email(),
-      reminderTime: time.add(faker.random.number({ min: 5, max: 60 }), 'minutes').format(),
+      email: 'trevorold1@gmail.com',
+      reminderTime: time.add(faker.random.number({ min: 5, max: 60 }), 's').format(),
       expired: false,
     };
     result.push(reminder);
@@ -27,13 +27,14 @@ const fakerGenerator = (count) => {
   return result;
 };
 
-Reminder.insertMany(fakerGenerator(50))
+
+db.Reminder.insertMany(fakerGenerator(10))
   .then((success) => {
     console.log(success);
-    Reminder.db.close();
+    db.Reminder.db.close();
   })
   .catch((error) => {
     console.log(error);
-    Reminder.db.close();
+    db.Reminder.db.close();
   });
 
