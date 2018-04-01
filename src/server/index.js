@@ -20,4 +20,15 @@ app.get('/v1/reminders', (req, res) => {
     });
 });
 
+app.post('/v1/reminders', (req, res) => {
+  const reminder = {
+    task: req.body.task,
+    email: req.body.email,
+    reminderTime: req.body.reminderTime,
+  };
+  db.insertReminder(reminder)
+    .then(data => res.send(data))
+    .catch(error => res.send(error));
+});
+
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
