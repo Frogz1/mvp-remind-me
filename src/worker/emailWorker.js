@@ -34,5 +34,3 @@ transporter.sendMail(mailOptions, (error, info) => {
   }
   console.log('Message sent: %s', info.messageId);
 });
-
-console.log(process.env.EMAIL)
