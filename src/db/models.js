@@ -24,7 +24,7 @@ const findRemindersEndingSoon = () => {
   const time = moment.utc();
   return Reminder
     .find({
-      reminderTime: { $gt: time.subtract(60, 'h').format() },
+      reminderTime: { $gt: time.add(10, 'm').format() },
     });
 };
 /*
@@ -47,13 +47,6 @@ const momentTester = () => {
   // 1. Every 10 seconds go through reminderTimes and perform:
   // moment(reminderTime).fromNow()
   // if value returned is "in a few seconds", trigger alert
-  findRemindersEndingSoon()
-    .then((data) => {
-      const reminders = data.filter(value =>
-        moment(value.reminderTime).fromNow() === 'in a few seconds');
-      console.log(reminders);
-    })
-    .catch(error => error);
 };
 
 

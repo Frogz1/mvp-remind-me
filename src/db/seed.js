@@ -18,8 +18,8 @@ const fakerGenerator = (count) => {
 
     const reminder = {
       task: faker.lorem.sentence(),
-      email: 'trevorold1@gmail.com',
-      reminderTime: time.add(faker.random.number({ min: 5, max: 60 }), 's').format(),
+      email: faker.internet.email(),
+      reminderTime: time.add(faker.random.number({ min: 1, max: 60 }), 'm').format(),
       expired: false,
     };
     result.push(reminder);
