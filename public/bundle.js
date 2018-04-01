@@ -19470,7 +19470,7 @@ var EndingSoon = function () {
       props.reminders.map(function (item) {
         return _react2['default'].createElement(
           'li',
-          { style: { 'list-style-type': 'none' }, key: item._id },
+          { style: { listStyleType: 'none' }, key: item._id },
           item.task,
           _react2['default'].createElement(
             'b',

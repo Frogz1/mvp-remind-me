@@ -6,7 +6,7 @@ const EndingSoon = props => (
     {
     props.reminders.map((item) => {
       return (
-        <li style={{ 'list-style-type': 'none' }} key={item._id}>{item.task}
+        <li style={{listStyleType: 'none' }} key={item._id}>{item.task}
         <b> reminding in {moment(item.reminderTime).fromNow()}</b>
       </li>);
       })
