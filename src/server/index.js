@@ -26,13 +26,13 @@ app.post('/v1/reminders', (req, res) => {
   const reminder = {
     task: req.body.task,
     email: req.body.email,
-    reminderTime: time.add(req.body.reminderTime, 'm').format(),
+    reminderTime: moment(time.add(Number(req.body.reminderTime), 'm').format())._d,
     expired: false,
   };
-  console.log(reminder)
-  // db.insertReminder(reminder)
-  //   .then(data => res.send(data))
-  //   .catch(error => res.send(error));
+
+  db.insertReminder(reminder)
+    .then(data => res.send(data))
+    .catch(error => res.send(error));
 });
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
