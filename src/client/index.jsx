@@ -27,14 +27,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <Container>
 
         <Header size="huge">Remind-Me!</Header>
         <ReminderForm/>
 
         <EndingSoon reminders={this.state.reminders}/>
 
-      </div>
+      </Container>
     );
   }
 }

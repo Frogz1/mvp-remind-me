@@ -43495,7 +43495,7 @@ var App = function (_React$Component) {
     value: function () {
       function render() {
         return _react2['default'].createElement(
-          'div',
+          _semanticUiReact.Container,
           null,
           _react2['default'].createElement(
             _semanticUiReact.Header,
@@ -83339,6 +83339,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
@@ -83360,6 +83362,12 @@ var _moment = __webpack_require__(6);
 var _moment2 = _interopRequireDefault(_moment);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var options = [{
   key: '1',
@@ -83391,54 +83399,130 @@ var options = [{
   value: 60
 }];
 
-var ReminderForm = function () {
+var ReminderForm = function (_React$Component) {
+  _inherits(ReminderForm, _React$Component);
+
   function ReminderForm(props) {
-    return _react2['default'].createElement(
-      _semanticUiReact.Container,
-      { textAlign: 'center' },
-      _react2['default'].createElement(
-        _semanticUiReact.Form,
-        null,
-        _react2['default'].createElement(
-          _semanticUiReact.Form.Group,
-          null,
-          _react2['default'].createElement(_semanticUiReact.Form.Input, { width: 6, label: 'Enter email', type: 'email' })
-        ),
-        _react2['default'].createElement(
-          _semanticUiReact.Form.Group,
-          null,
-          _react2['default'].createElement(_semanticUiReact.Form.Select, {
-            fluid: true,
-            label: 'Remind me in',
-            width: 6,
-            options: options,
-            placeholder: '5 minutes'
-          })
-        ),
-        _react2['default'].createElement(
-          _semanticUiReact.Form.Group,
-          null,
-          _react2['default'].createElement(_semanticUiReact.Form.TextArea, {
-            width: 6,
-            label: 'Reminder',
-            placeholder: 'What do you want to be reminded about?'
-          })
-        ),
-        _react2['default'].createElement(
-          _semanticUiReact.Form.Group,
-          null,
-          _react2['default'].createElement(
-            _semanticUiReact.Form.Button,
-            { width: 6, positive: true },
-            'Submit'
-          )
-        )
-      )
-    );
+    _classCallCheck(this, ReminderForm);
+
+    var _this = _possibleConstructorReturn(this, (ReminderForm.__proto__ || Object.getPrototypeOf(ReminderForm)).call(this, props));
+
+    _this.state = {
+      email: '',
+      reminderTime: 0,
+      reminder: ''
+    };
+    return _this;
   }
 
+  _createClass(ReminderForm, [{
+    key: 'handleEmailChange',
+    value: function () {
+      function handleEmailChange(e) {
+        this.setState({ email: e.target.value });
+      }
+
+      return handleEmailChange;
+    }()
+  }, {
+    key: 'handleReminderTimeChange',
+    value: function () {
+      function handleReminderTimeChange(data) {
+        this.setState({ reminderTime: data.value });
+      }
+
+      return handleReminderTimeChange;
+    }()
+  }, {
+    key: 'handleReminderChange',
+    value: function () {
+      function handleReminderChange(e) {
+        this.setState({ reminder: e.target.value });
+      }
+
+      return handleReminderChange;
+    }()
+  }, {
+    key: 'render',
+    value: function () {
+      function render() {
+        var _this2 = this;
+
+        return _react2['default'].createElement(
+          _semanticUiReact.Container,
+          { textAlign: 'center' },
+          _react2['default'].createElement(
+            _semanticUiReact.Form,
+            null,
+            _react2['default'].createElement(
+              _semanticUiReact.Form.Group,
+              null,
+              _react2['default'].createElement(_semanticUiReact.Form.Input, {
+                width: 6,
+                label: 'Enter email',
+                onChange: function () {
+                  function onChange(e) {
+                    return _this2.handleEmailChange(e);
+                  }
+
+                  return onChange;
+                }(),
+                type: 'email'
+              })
+            ),
+            _react2['default'].createElement(
+              _semanticUiReact.Form.Group,
+              null,
+              _react2['default'].createElement(_semanticUiReact.Form.Select, {
+                onChange: function () {
+                  function onChange(e, data) {
+                    return _this2.handleReminderTimeChange(data);
+                  }
+
+                  return onChange;
+                }(),
+                fluid: true,
+                label: 'Remind me in',
+                width: 6,
+                options: options,
+                placeholder: '5 minutes'
+              })
+            ),
+            _react2['default'].createElement(
+              _semanticUiReact.Form.Group,
+              null,
+              _react2['default'].createElement(_semanticUiReact.Form.TextArea, {
+                onChange: function () {
+                  function onChange(e) {
+                    return _this2.handleReminderChange(e);
+                  }
+
+                  return onChange;
+                }(),
+                width: 6,
+                label: 'Reminder',
+                placeholder: 'What do you want to be reminded about?'
+              })
+            ),
+            _react2['default'].createElement(
+              _semanticUiReact.Form.Group,
+              null,
+              _react2['default'].createElement(
+                _semanticUiReact.Form.Button,
+                { width: 6, positive: true },
+                'Submit'
+              )
+            )
+          )
+        );
+      }
+
+      return render;
+    }()
+  }]);
+
   return ReminderForm;
-}();
+}(_react2['default'].Component);
 
 exports['default'] = ReminderForm;
 
