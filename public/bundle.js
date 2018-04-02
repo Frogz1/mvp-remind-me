@@ -43497,7 +43497,7 @@ var App = function (_React$Component) {
             { size: 'huge' },
             'Remind-Me!'
           ),
-          _react2['default'].createElement(_ReminderForm2['default'], { componentDidUpdate: this.getTasksEndingSoon() }),
+          _react2['default'].createElement(_ReminderForm2['default'], { componentDidUpdate: this.getTasksEndingSoon }),
           _react2['default'].createElement(_EndingSoon2['default'], { reminders: this.state.reminders })
         );
       }
@@ -83469,7 +83469,6 @@ var ReminderForm = function (_React$Component) {
           reminderTime: 0,
           task: ''
         });
-        this.getTasksEndingSoon();
       }
 
       return handleSubmit;

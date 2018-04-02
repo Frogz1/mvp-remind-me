@@ -73,7 +73,7 @@ class ReminderForm extends React.Component {
       reminderTime: 0,
       task: '',
     });
-    this.getTasksEndingSoon();
+
   }
   addReminder() {
     const message = {
