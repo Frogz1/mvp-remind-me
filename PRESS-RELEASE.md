@@ -1,4 +1,4 @@
-# Project Name #
+# remind-me! #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -16,29 +16,29 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+## Never forget a coworker request again ##
+  Get reminded to do that thing this hour!
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Are you sick of being in the zone working when a coworker makes a request of you but you respond, give me 5 minutes, or give me an hour.  But you always forget to look at their request, that is now a thing of the past with Remind-Me!
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  > The 21st century sticky not is finally here.  Simply type your e-mail, when you want to be reminded and voila, reminder will be delivered straight to your inbox.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  > Post-it notes require physical space and are not always available to remind you of an upcoming reminder.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  > remind-me! provides a simple UI to set yourself up to never forget something to do within the hour again.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  > When I'm focused and my coworker asks me to send him that e-mail within the hour I always seem to forget so I built remind-me!
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  > Simply navigate to http://ec2-13-57-187-115.us-west-1.compute.amazonaws.com/ , fill out the form and you're setup to never forget an upcoming task again
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  > Sure, I could use a calendar but I don't want to clutter up my already cluttered calendar with off-hand tasks.  remind-me! has improved my productivity by 9000% in just one day.
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > Stay tuned to http://ec2-13-57-187-115.us-west-1.compute.amazonaws.com/ for updates and feel free to reach out to trevorold1@gmail.com for business pricing and inquiries
