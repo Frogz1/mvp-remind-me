@@ -45,9 +45,19 @@ class ReminderForm extends React.Component {
       email: '',
       reminderTime: 0,
       task: '',
+      reminders: [],
     };
+    this.getTasksEndingSoon();
   }
-
+  getTasksEndingSoon() {
+    return fetch('/v1/reminders').then((data) => {
+      data
+        .json()
+        .then((data) => {
+          this.setState({ reminders: data });
+        });
+    }).catch(error => error);
+  }
   handleEmailChange(e) {
     this.setState({ email: e.target.value });
   }
@@ -57,20 +67,31 @@ class ReminderForm extends React.Component {
   handleReminderChange(e) {
     this.setState({ task: e.target.value });
   }
-
+  handleSubmit() {
+    this.setState({
+      email: '',
+      reminderTime: 0,
+      task: '',
+    });
+    this.getTasksEndingSoon();
+  }
   addReminder() {
-    let message = {
+    const message = {
       task: this.state.task,
       reminderTime: this.state.reminderTime,
       email: this.state.email,
     };
     console.log(message);
     axios.post('/v1/reminders', message)
-      .then(data => {
+      .then((data) => {
         console.log(data);
+        this.setState({
+          email: '',
+          reminderTime: 0,
+          task: '',
+        });
       })
       .catch(error => error);
-
   }
 
   render() {
@@ -81,6 +102,7 @@ class ReminderForm extends React.Component {
             <Form.Input
               width={6}
               label="Enter email"
+              value={this.state.email}
               onChange={e => this.handleEmailChange(e)}
               type="email"
             />
@@ -89,6 +111,7 @@ class ReminderForm extends React.Component {
             <Form.Select
               onChange={(e, data) => this.handleReminderTimeChange(data)}
               fluid
+              value={this.state.reminderTime}
               label="Remind me in"
               width={6}
               options={options}
@@ -99,13 +122,14 @@ class ReminderForm extends React.Component {
           <Form.Group>
             <Form.TextArea
               onChange={e => this.handleReminderChange(e)}
+              value={this.state.task}
               width={6}
               label="Reminder"
               placeholder="What do you want to be reminded about?"
             />
           </Form.Group>
           <Form.Group>
-            <Form.Button width={6} positive onClick={() => this.addReminder()}>Submit</Form.Button>
+            <Form.Button width={6} positive  onClick={() => this.addReminder()}>Submit</Form.Button>
           </Form.Group>
         </Form>
       </Container>

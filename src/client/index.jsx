@@ -28,7 +28,7 @@ class App extends React.Component {
       <Container>
 
         <Header size="huge">Remind-Me!</Header>
-        <ReminderForm/>
+        <ReminderForm componentDidUpdate={this.getTasksEndingSoon()}/>
 
         <EndingSoon reminders={this.state.reminders}/>
 

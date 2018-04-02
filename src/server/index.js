@@ -2,6 +2,7 @@ const express = require('express');
 const db = require('../db/models');
 const bodyParser = require('body-parser');
 const moment = require('moment');
+const worker = require('../worker/emailWorker');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -34,5 +35,9 @@ app.post('/v1/reminders', (req, res) => {
     .then(data => res.send(data))
     .catch(error => res.send(error));
 });
+setInterval(() => {
+  console.log('sending');
+  worker.sendReminders();
+}, 60000);
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));

@@ -43497,7 +43497,7 @@ var App = function (_React$Component) {
             { size: 'huge' },
             'Remind-Me!'
           ),
-          _react2['default'].createElement(_ReminderForm2['default'], null),
+          _react2['default'].createElement(_ReminderForm2['default'], { componentDidUpdate: this.getTasksEndingSoon() }),
           _react2['default'].createElement(_EndingSoon2['default'], { reminders: this.state.reminders })
         );
       }
@@ -83409,12 +83409,31 @@ var ReminderForm = function (_React$Component) {
     _this.state = {
       email: '',
       reminderTime: 0,
-      task: ''
+      task: '',
+      reminders: []
     };
+    _this.getTasksEndingSoon();
     return _this;
   }
 
   _createClass(ReminderForm, [{
+    key: 'getTasksEndingSoon',
+    value: function () {
+      function getTasksEndingSoon() {
+        var _this2 = this;
+
+        return fetch('/v1/reminders').then(function (data) {
+          data.json().then(function (data) {
+            _this2.setState({ reminders: data });
+          });
+        })['catch'](function (error) {
+          return error;
+        });
+      }
+
+      return getTasksEndingSoon;
+    }()
+  }, {
     key: 'handleEmailChange',
     value: function () {
       function handleEmailChange(e) {
@@ -83442,9 +83461,25 @@ var ReminderForm = function (_React$Component) {
       return handleReminderChange;
     }()
   }, {
+    key: 'handleSubmit',
+    value: function () {
+      function handleSubmit() {
+        this.setState({
+          email: '',
+          reminderTime: 0,
+          task: ''
+        });
+        this.getTasksEndingSoon();
+      }
+
+      return handleSubmit;
+    }()
+  }, {
     key: 'addReminder',
     value: function () {
       function addReminder() {
+        var _this3 = this;
+
         var message = {
           task: this.state.task,
           reminderTime: this.state.reminderTime,
@@ -83453,6 +83488,11 @@ var ReminderForm = function (_React$Component) {
         console.log(message);
         _axios2['default'].post('/v1/reminders', message).then(function (data) {
           console.log(data);
+          _this3.setState({
+            email: '',
+            reminderTime: 0,
+            task: ''
+          });
         })['catch'](function (error) {
           return error;
         });
@@ -83464,7 +83504,7 @@ var ReminderForm = function (_React$Component) {
     key: 'render',
     value: function () {
       function render() {
-        var _this2 = this;
+        var _this4 = this;
 
         return _react2['default'].createElement(
           _semanticUiReact.Container,
@@ -83478,9 +83518,10 @@ var ReminderForm = function (_React$Component) {
               _react2['default'].createElement(_semanticUiReact.Form.Input, {
                 width: 6,
                 label: 'Enter email',
+                value: this.state.email,
                 onChange: function () {
                   function onChange(e) {
-                    return _this2.handleEmailChange(e);
+                    return _this4.handleEmailChange(e);
                   }
 
                   return onChange;
@@ -83494,12 +83535,13 @@ var ReminderForm = function (_React$Component) {
               _react2['default'].createElement(_semanticUiReact.Form.Select, {
                 onChange: function () {
                   function onChange(e, data) {
-                    return _this2.handleReminderTimeChange(data);
+                    return _this4.handleReminderTimeChange(data);
                   }
 
                   return onChange;
                 }(),
                 fluid: true,
+                value: this.state.reminderTime,
                 label: 'Remind me in',
                 width: 6,
                 options: options,
@@ -83512,11 +83554,12 @@ var ReminderForm = function (_React$Component) {
               _react2['default'].createElement(_semanticUiReact.Form.TextArea, {
                 onChange: function () {
                   function onChange(e) {
-                    return _this2.handleReminderChange(e);
+                    return _this4.handleReminderChange(e);
                   }
 
                   return onChange;
                 }(),
+                value: this.state.task,
                 width: 6,
                 label: 'Reminder',
                 placeholder: 'What do you want to be reminded about?'
@@ -83529,7 +83572,7 @@ var ReminderForm = function (_React$Component) {
                 _semanticUiReact.Form.Button,
                 { width: 6, positive: true, onClick: function () {
                     function onClick() {
-                      return _this2.addReminder();
+                      return _this4.addReminder();
                     }
 
                     return onClick;

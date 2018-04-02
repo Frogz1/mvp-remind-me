@@ -20,7 +20,7 @@ const findRemindersEndingSoon = () => {
   const time = moment.utc();
   return Reminder
     .find({
-      reminderTime: { $gt: time.add(1, 'm').format() },
+      reminderTime: { $gt: time.add(1, 's').format() },
     });
 };
 /*
