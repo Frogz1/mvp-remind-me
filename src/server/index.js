@@ -39,6 +39,6 @@ app.post('/v1/reminders', (req, res) => {
 setInterval(() => {
   console.log('sending');
   worker.sendReminders();
-}, 60000);
+}, 30000);
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));

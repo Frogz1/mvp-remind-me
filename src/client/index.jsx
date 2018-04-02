@@ -18,24 +18,24 @@ class App extends React.Component {
       data
         .json()
         .then((data) => {
-          this.setState({reminders: data});
+          this.setState({ reminders: data });
         });
     }).catch(error => error);
   }
 
+  componentDidUpdate() {
+    setTimeout(() => this.getTasksEndingSoon(), 5000);
+  }
+
   render() {
-  return (
+    return (
       <Container>
-
         <Header size="huge">Remind-Me!</Header>
-        <ReminderForm componentDidUpdate={this.getTasksEndingSoon}/>
-
-        <EndingSoon reminders={this.state.reminders}/>
-
+        <ReminderForm onClick={() => this.getTasksEndingSoon} />
+        <EndingSoon reminders={this.state.reminders} />
       </Container>
     );
   }
 }
 
-export default ReactDOM.render(
-  <App/>, document.getElementById('remind-me'));
+export default ReactDOM.render(<App />, document.getElementById('remind-me'));

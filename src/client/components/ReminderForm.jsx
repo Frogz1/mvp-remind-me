@@ -1,15 +1,11 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
-import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
 import { Input, Form, Container, FormButton, Select } from 'semantic-ui-react';
-import moment from 'moment';
 import axios from 'axios';
 
 const options = [
   {
     key: '1',
-    text: 'One Minutes',
+    text: 'One Minute',
     value: 1,
   }, {
     key: '5',
@@ -73,7 +69,6 @@ class ReminderForm extends React.Component {
       reminderTime: 0,
       task: '',
     });
-
   }
   addReminder() {
     const message = {
@@ -129,7 +124,14 @@ class ReminderForm extends React.Component {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Button width={6} positive  onClick={() => this.addReminder()}>Submit</Form.Button>
+            <Form.Button
+              width={6}
+              positive
+              onClick={() => {
+              this.addReminder();
+              }}
+            >Submit
+            </Form.Button>
           </Form.Group>
         </Form>
       </Container>
