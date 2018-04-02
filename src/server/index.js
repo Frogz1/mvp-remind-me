@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('../db/models');
 const bodyParser = require('body-parser');
+const moment = require('moment');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -21,15 +22,17 @@ app.get('/v1/reminders', (req, res) => {
 });
 
 app.post('/v1/reminders', (req, res) => {
+  const time = moment.utc();
   const reminder = {
     task: req.body.task,
     email: req.body.email,
-    reminderTime: req.body.reminderTime,
+    reminderTime: time.add(req.body.reminderTime, 'm').format(),
+    expired: false,
   };
-  console.log(req.body)
-  db.insertReminder(reminder)
-    .then(data => res.send(data))
-    .catch(error => res.send(error));
+  console.log(reminder)
+  // db.insertReminder(reminder)
+  //   .then(data => res.send(data))
+  //   .catch(error => res.send(error));
 });
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
