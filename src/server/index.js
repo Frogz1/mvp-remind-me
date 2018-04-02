@@ -26,6 +26,7 @@ app.post('/v1/reminders', (req, res) => {
     email: req.body.email,
     reminderTime: req.body.reminderTime,
   };
+  console.log(req.body)
   db.insertReminder(reminder)
     .then(data => res.send(data))
     .catch(error => res.send(error));

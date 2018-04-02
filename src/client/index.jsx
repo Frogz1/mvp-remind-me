@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Header, Container} from 'semantic-ui-react';
+import { Header, Container } from 'semantic-ui-react';
 import EndingSoon from './components/EndingSoon';
 import ReminderForm from './components/ReminderForm';
-import moment from 'moment';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       reminders: [],
-      moment: moment()
     };
     this.getTasksEndingSoon();
   }
@@ -26,7 +24,7 @@ class App extends React.Component {
   }
 
   render() {
-    return (
+  return (
       <Container>
 
         <Header size="huge">Remind-Me!</Header>
