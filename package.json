@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-dev": "webpack --watch",
-    "start-dev": "nodemon src/server/index.js"
+    "build": "webpack",
+    "start-dev": "nodemon src/server/index.js",
+    "start": "npm run-script build && npm run-script prod",
+    "prod": "node src/server/index.js"
   },
   "repository": {
     "type": "git",

@@ -1,7 +1,9 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
 const moment = require('moment');
 
-mongoose.connect('mongodb://127.0.0.1:27017/remindMe');
+const CONN_STRING = process.env.MONGO || 'mongodb://127.0.0.1:27017/remindMe';
+mongoose.connect(CONN_STRING);
 
 const Reminder = mongoose.model('Reminder', {
   task: String,
